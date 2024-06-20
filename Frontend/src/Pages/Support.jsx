@@ -1,9 +1,12 @@
 import React from 'react'
+import Navbar from '../components/Navbar'
+import BreadCrum from '../components/BreadCrum'
 
 const Support = () => {
   return (
     <div>
-      <h1>Support</h1>
+      <Navbar title={"Support"}/>
+      <BreadCrum title={"Support"} back={"/"}/>
     </div>
   )
 }

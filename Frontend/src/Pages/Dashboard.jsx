@@ -1,9 +1,12 @@
 import React from 'react'
+import Navbar from '../components/Navbar'
+import BreadCrum from '../components/BreadCrum'
 
 const Dashboard = () => {
   return (
-    <div className='bg-[#fff] py-[28px] w-full h-screen'>
-      <h1 className='text-[16px]'> Dashboard </h1>
+    <div className='w-full h-screen'>
+      <Navbar title="Dashboard"/>
+      <BreadCrum />
     </div>
   )
 }

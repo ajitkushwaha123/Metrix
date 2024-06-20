@@ -1,9 +1,12 @@
 import React from 'react'
+import Navbar from '../components/Navbar'
+import BreadCrum from '../components/BreadCrum'
 
 const Order = () => {
   return (
     <div>
-      <h1>Order</h1>
+      <Navbar title={"Orders"}/>
+      <BreadCrum title={"Orders"} back={"/"} />
     </div>
   )
 }

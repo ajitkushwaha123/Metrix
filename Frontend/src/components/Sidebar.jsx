@@ -45,13 +45,13 @@ const Sidebar = () => {
     },
   ];
 
-  const [isActive, setIsActive] = useState(null); // State for active link
-  const location = useLocation(); // Get current location from react-router-dom
+  const [isActive, setIsActive] = useState(null); 
+  const location = useLocation();
 
   useEffect(() => {
     const activeLink = navLinks.find((nav) => location.pathname === nav.link);
-    setIsActive(activeLink?.link); // Set active link based on pathname
-  }, [location]); // Update active link on location change
+    setIsActive(activeLink?.link); 
+  }, [location]); 
 
   return (
     <div className="hover:w-[296px] w-[88px] pb-[30px] h-screen font-poppins group bg-[#fff]">
@@ -69,7 +69,7 @@ const Sidebar = () => {
     <li
       key={index}
       className={`flex items-center h-[49px] hover:bg-[#5570F1] rounded-lg group-hover:w-[233px] hover:text-white text-[20px] px-[14px] group-hover:px-[30px] my-[3px] ${isActive === nav.link ? 'bg-[#5570F1] text-white' : ''}`}
-      aria-label={nav.title} // Accessibility
+      aria-label={nav.title} 
       onClick={() => setIsActive(nav.link)}
     >
       {nav.icon}
