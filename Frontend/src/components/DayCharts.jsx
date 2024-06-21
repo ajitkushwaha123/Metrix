@@ -48,14 +48,14 @@ const data = [
 
 const DayChart = () => {
   return (
-    <ResponsiveContainer width={600} height={350}>
+    <ResponsiveContainer width={620} height={350} className="py-[20px]">
       <BarChart data={data}>
         <CartesianGrid strokeDasharray="5 5" />
         <XAxis dataKey="name" />
         <YAxis />
         <Tooltip />
         <Legend />
-        <Bar type="monotone" dataKey="uv" stroke="#2563eb" fill="#8884d8" />
+        <Bar type="monotone" dataKey="uv" stroke="#2563eb" fill="#5570F1" />
       </BarChart>
     </ResponsiveContainer>
   );

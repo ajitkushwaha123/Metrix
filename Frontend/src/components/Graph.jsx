@@ -4,7 +4,7 @@ import Chart from './Chart'
 import { IoIosArrowDown } from "react-icons/io";
 const Graph = ({title , present}) => {
   return (
-    <div className='h-[423.67px] bg-white font-poppins'>
+    <div className='h-[423.67px] rounded-xl bg-white font-poppins'>
       <div className='flex justify-between p-5'>
         <div className='flex justify-center items-center'>
            <p className='text-[18px] font-poppins text-medium mr-[15px]'>Marketting</p>

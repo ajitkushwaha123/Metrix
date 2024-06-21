@@ -10,6 +10,8 @@ import Support from './Pages/Support'
 import Gift from './Pages/Gift'
 import Logout from './Pages/Logout'
 import Customers from './Pages/Customers'
+import Login from './Pages/Login'
+import Register from './Pages/Register'
 
 function App() {
 
@@ -31,6 +33,11 @@ function App() {
             <Route path='/support' element={<Support />}/>
             <Route path='/gift' element={<Gift />}/>
             <Route path='/logout' element={<Logout />}/>
+          </Routes>
+
+          <Routes>
+            <Route path='/login' element={<Login />} />
+            <Route path='/register' element={<Register />} />
           </Routes>
         </div>
       </div>

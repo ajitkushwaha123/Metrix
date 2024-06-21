@@ -68,7 +68,7 @@ const Dashboard = () => {
       </div>
 
       <div className='px-[40px] flex py-[20px]'>
-         <div className='w-[60%] pr-[15px]'>
+         <div className='w-[60%] pr-[15px] '>
            <Graph title={<DayChart />} present={"1"}/>
          </div>
       </div>
