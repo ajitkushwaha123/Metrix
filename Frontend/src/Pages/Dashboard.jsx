@@ -6,6 +6,9 @@ import { LuUsers2 } from "react-icons/lu";
 import { BsHandbag } from "react-icons/bs";
 import { AiOutlinePieChart } from "react-icons/ai";
 import Graph from '../components/Graph';
+import DayChart from '../components/DayCharts';
+import { MdOutlineKeyboardArrowDown } from "react-icons/md";
+import Chart from '../components/Chart';
 
 
 const Dashboard = () => {
@@ -54,10 +57,20 @@ const Dashboard = () => {
         </div>
       </div>
 
-      <div className='px-[40px] py-[20px]'>
+      <div className='px-[40px] flex py-[20px]'>
         <div className='w-[30%] pr-[15px]'>
-          <Graph />
+          <Graph title={<Chart />}/>
         </div>
+
+        <div className='w-[30%] pr-[15px]'>
+          <Graph title={<Chart />}/>
+        </div>
+      </div>
+
+      <div className='px-[40px] flex py-[20px]'>
+         <div className='w-[60%] pr-[15px]'>
+           <Graph title={<DayChart />} present={"1"}/>
+         </div>
       </div>
     </div>
   )
