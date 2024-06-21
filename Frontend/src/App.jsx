@@ -8,10 +8,11 @@ import Settings from './Pages/Settings'
 import Conversations from './Pages/Conversations'
 import Support from './Pages/Support'
 import Gift from './Pages/Gift'
-import Logout from './Pages/Logout'
+import Logout from './Authentication/Logout'
 import Customers from './Pages/Customers'
-import Login from './Pages/Login'
-import Register from './Pages/Register'
+import Login from './Authentication/Login'
+import Register from './Authentication/Register'
+import ForgetPassword from './Authentication/ForgetPassword'
 
 function App() {
 
@@ -38,6 +39,7 @@ function App() {
           <Routes>
             <Route path='/login' element={<Login />} />
             <Route path='/register' element={<Register />} />
+            <Route path='/forget-password' element={<ForgetPassword />} />
           </Routes>
         </div>
       </div>

@@ -3,23 +3,28 @@ import { metrix } from '../assets'
 import { IoMailOutline } from "react-icons/io5";
 import { IoKeyOutline } from "react-icons/io5";
 import { NavLink } from 'react-router-dom';
+import { useFormik } from 'formik';
+import { loginValidate } from '../helper/validate';
+import { Toaster } from 'react-hot-toast';
 
 const Login = () => {
-
-  const [email , setEmail] = useState('');
-  const [password , setPassword] = useState('');
-  const userLogin = [{
-    email : email,
-    password : password,
-  }]
-  const login = (e) => {
-      e.preventDefault();
-      console.log(userLogin);
-  }
+  const formik = useFormik({
+    initialValues : {
+      email : '',
+      password : '',
+    },
+    validate : loginValidate,
+    validateOnBlur : false,
+    validateOnChange : false,
+    onSubmit : async values => {
+       console.log(values);
+    }
+  })
 
   return (
     <div className='w-[full] font-poppins flex h-screen justify-center items-center'>
-    <form onSubmit={login}>
+    <Toaster position='top-center' reverseOrder='false'></Toaster>
+    <form onSubmit={formik.handleSubmit}>
       <div className='px-[40px] py-[40px] bg-white rounded-xl '>
          <div className='flex justify-center items-center flex-col'>
             <img width={"60px"} src={metrix}/>
@@ -30,16 +35,16 @@ const Login = () => {
          <div className='w-[full] flex flex-col justify-center items-center'>
             <div className='flex rounded-lg text-[18px] justify-center items-center bg-[#EFF1F9] w-[375px] h-[52px]'> 
               <IoMailOutline />
-              <input onChange={(e) => setEmail(e.target.value)} className='w-[303px] ml-[10px] h-[36px] outline-none bg-[#EFF1F9]' placeholder='Email Address' type='email'/>
+              <input {...formik.getFieldProps('email')} className='w-[303px] ml-[10px] h-[36px] outline-none bg-[#EFF1F9]' placeholder='Email Address' type='email'/>
             </div>
 
             <div className='flex rounded-lg my-[20px] text-[18px] justify-center items-center bg-[#EFF1F9] w-[375px] h-[52px]'> 
               <IoKeyOutline />
-              <input onChange={(e) => setPassword(e.target.value)} className='w-[303px] ml-[10px] h-[36px] outline-none bg-[#EFF1F9]' placeholder='Password' type='password'/>
+              <input {...formik.getFieldProps('password')} className='w-[303px] ml-[10px] h-[36px] outline-none bg-[#EFF1F9]' placeholder='Password' type='password'/>
             </div>
          </div>
 
-         <p className='text-primary flex justify-end items-center px-[40px]'>Recover Password</p>
+         <NavLink to={'/forget-password'}><p className='text-primary flex justify-end items-center px-[40px]'>Recover Password</p></NavLink>
           <div className='flex justify-center items-center flex-col'>
               <p className='py-[15px]'>Don’t have an account? <NavLink to={'/register'}><span className='text-primary'> Sign Up </span></NavLink> </p>
               <button className='bg-primary px-[20px] py-2 mt-[20px] rounded-md text-white text-[18px]'>Login</button>
