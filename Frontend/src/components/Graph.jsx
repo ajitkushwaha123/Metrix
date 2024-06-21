@@ -1,6 +1,6 @@
 import React from 'react'
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
-
+import Chart from './Chart'
 const Graph = () => {
   return (
     <div className='h-[423.67px] bg-white font-poppins'>
@@ -8,6 +8,8 @@ const Graph = () => {
         <p className='text-[18px] font-poppins text-medium'>Marketting</p>
         <p className='flex text-txtPrimary justify-center items-center'>This Week <MdOutlineKeyboardArrowDown className='text-[22px]'/> </p>
       </div>
+
+      <Chart />
     </div>
   )
 }

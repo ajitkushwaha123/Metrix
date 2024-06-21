@@ -1,76 +1,59 @@
-import { CubejsApi } from '@cubejs-client/core';
+import React from 'react';
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
-const apiUrl = 'https://heavy-lansford.gcp-us-central1.cubecloudapp.dev/cubejs-api/v1';
-const cubeToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjEwMDAwMDAwMDAsImV4cCI6NTAwMDAwMDAwMH0.OHZOpOBVKr-sCwn8sbZ5UFsqI3uCs6e4omT7P6WVMFw';
+const data = [
+  {
+    name: 'Page A',
+    uv: 4000,
+    pv: 2400,
+    amt: 2400,
+  },
+  {
+    name: 'Page A',
+    uv: 1000,
+    pv: 2400,
+    amt: 2400,
+  },
+  {
+    name: 'Page A',
+    uv: 5000,
+    pv: 2400,
+    amt: 2400,
+  },
+  // ... other data entries ...
+];
 
-const cubeApi = new CubejsApi(cubeToken, { apiUrl });
+const Chart = () => {
+  return (
+    <ResponsiveContainer width={300} height={250}>
+      <BarChart data={data}>
+        <CartesianGrid strokeDasharray="5 5" />
+        <XAxis dataKey="name" />
+        <YAxis />
+        <Tooltip />
+        <Legend />
+        <Bar type="monotone" dataKey="uv" stroke="#2563eb" fill="#8884d8" />
+      </BarChart>
+    </ResponsiveContainer>
+  );
+};
 
-export async function getAquisitionsByYear() {
-  const acquisitionsByYearQuery = {
-    dimensions: [
-      'Artworks.yearAcquired',
-    ],
-    measures: [
-      'Artworks.count'
-    ],
-    filters: [ {
-      member: 'Artworks.yearAcquired',
-      operator: 'set'
-    } ],
-    order: {
-      'Artworks.yearAcquired': 'asc'
-    }
-  };
+// const CustomTooltip = ({ active, payload, label }) => {
+//   if (active && payload && payload.length) {
+//     return (
+//       <div className="p-4 bg-slate-900 flex flex-col gap-4 rounded-md">
+//         <p className="text-medium text-lg">{label}</p>
+//         <p className="text-sm text-primary">
+//           Product 1:
+//           <span className="ml-2">${payload[0].value}</span>
+//         </p>
+//         <p className="text-sm text-primary">
+//           Product 2:
+//           <span className="ml-2">${payload[1].value}</span>
+//         </p>
+//       </div>
+//     );
+//   }
+// };
 
-  const resultSet = await cubeApi.load(acquisitionsByYearQuery);
-
-  return resultSet.tablePivot().map(row => ({
-    year: parseInt(row['Artworks.yearAcquired']),
-    count: parseInt(row['Artworks.count'])
-  }));
-}
-
-export async function getDimensions() {
-  const dimensionsQuery = {
-    dimensions: [
-      'Artworks.widthCm',
-      'Artworks.heightCm'
-    ],
-    measures: [
-      'Artworks.count'
-    ],
-    filters: [
-      {
-        member: 'Artworks.classification',
-        operator: 'equals',
-        values: [ 'Painting' ]
-      },
-      {
-        member: 'Artworks.widthCm',
-        operator: 'set'
-      },
-      {
-        member: 'Artworks.widthCm',
-        operator: 'lt',
-        values: [ '500' ]
-      },
-      {
-        member: 'Artworks.heightCm',
-        operator: 'set'
-      },
-      {
-        member: 'Artworks.heightCm',
-        operator: 'lt',
-        values: [ '500' ]
-      }
-    ]
-  };
-
-  const resultSet = await cubeApi.load(dimensionsQuery);
-
-  return resultSet.tablePivot().map(row => ({
-    width: parseInt(row['Artworks.widthCm']),
-    height: parseInt(row['Artworks.heightCm']),
-    count: parseInt(row['Artworks.count'])
-  }));
-}
+export default Chart;
