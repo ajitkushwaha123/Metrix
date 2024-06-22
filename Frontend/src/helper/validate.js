@@ -65,6 +65,14 @@ export async function registerValidate(values) {
   
     return errors; 
 }
-  
-  
-  
+
+export async function profileValidate(values) {
+  const errors = {}; 
+  // if(!values.email)
+  // {
+  //   errors.email = toast.error('Email Required... !');
+  // }
+
+  errors.success - toast.success('Profile Update Success');
+  return errors; 
+}
