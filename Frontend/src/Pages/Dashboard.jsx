@@ -9,6 +9,11 @@ import Graph from '../components/Graph';
 import DayChart from '../components/DayCharts';
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 import Chart from '../components/Chart';
+import ChartPie from '../components/ChartPie';
+import { BsFolder2Open } from 'react-icons/bs';
+import { BsCart3 } from "react-icons/bs";
+
+
 
 
 const Dashboard = () => {
@@ -58,12 +63,36 @@ const Dashboard = () => {
       </div>
 
       <div className='px-[40px] flex py-[20px]'>
-        <div className='w-[30%] pr-[15px]'>
-          <Graph title={<Chart />}/>
+        <div className='w-[29%] rounded-xl bg-white '>
+          <Graph title={<ChartPie />} present2={"1"}/>
         </div>
 
-        <div className='w-[30%] pr-[15px]'>
-          <Graph title={<Chart />}/>
+        <div className='w-[30%] ml-[28px] pr-[15px]'>
+          <div className='mt-[4px]'>
+           <Stats 
+             bgColor="primary"
+             height='170px'
+             icon={<BsFolder2Open />}
+             title1={"All Products"}
+             title2={"Active"}
+             stat1={"45"}
+             stat2={"32"}
+             padY={"10"}
+             txtColor={"white"}
+           />
+          </div>
+
+          <div className='mt-[30px]'>
+            <Stats  
+             height="159px"
+             icon={<BsCart3 />}
+             title1={"Abandoned Cart"}
+             title2={"Customers"}
+             stat1={"20%"}
+             stat2={"30"}
+             padY={"9"}
+           />
+          </div>
         </div>
       </div>
 
