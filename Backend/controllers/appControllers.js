@@ -154,8 +154,33 @@ export async function verifyOTP(req, res) {
 
 
 export async function createResetSession(req, res) {
-  res.json('createResetSession route');
+  if(req.app.locals.resetSession)
+    {
+       req.app.locals.resetSession = false;
+       return res.status(201).send({msg : "Access Granted... !"})
+    }
+
+    return res.status(440).send({error : "Session Expired"});
 }
 export async function resetPassword(req, res) {
-  res.json('resetPassword route');
+  try {
+      if (!req.app.locals.resetSession) {
+          return res.status(401).send({ error: "Session Expired" });
+      }
+
+      const { username, password } = req.body;
+      const user = await UserModel.findOne({ username });
+
+      if (!user) {
+          return res.status(404).send({ error: "Username not found" });
+      }
+
+      const hashedPassword = await bcrypt.hash(password, 10);
+      await UserModel.updateOne({ username: user.username }, { password: hashedPassword });
+
+      req.app.locals.resetSession = false;
+      return res.status(200).send({ msg: "Record Updated" });
+  } catch (error) {
+      return res.status(500).send({ error: "Unable to hash password" });
+  }
 }

@@ -21,7 +21,7 @@ const Stats = ({
 }) => {
   return (
     <div className={`font-poppins h-${height} text-${txtColor} flex justify-center flex-col pb-[19px] bg-${bgColor} rounded-xl`}>
-      <div className={`flex justify-between py-${padY} px-5`}>
+      <div className={`flex justify-between py-5 px-5`}>
         <p className='bg-secondary text-[24px] text-primary p-2 rounded-lg'>
           {icon}
         </p>
